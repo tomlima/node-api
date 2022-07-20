@@ -9,6 +9,15 @@ const userController = {
         data: result
       })
     })
+  },
+  insertUser: (req, res) => {
+    user.insertUser( req.body, (err,result) => {
+      if(err) return
+      return res.json({
+        success: 1,
+        data: result
+      })
+    })
   }
 }
 
