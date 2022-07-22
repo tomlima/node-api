@@ -5,10 +5,8 @@ const userModel = {
   deleteUser: async (id, callback) => {
     try{
       const connection = await db.connection()
-      connection.collection("users").deleteOne({_id : new mongo.ObjectId(id)}, (err, result) => {
-        if(err) throw new Error(err)
-        return callback(null, result)
-      })
+      const result = await connection.collection("users").deleteOne({_id : new mongo.ObjectId(id)})
+      return callback(null, result)
     }catch(err){
       return callback(err, null)
     }
@@ -16,10 +14,19 @@ const userModel = {
   getUsers: async (callback) => {
     try{
       const connection = await db.connection()
-      const users = await connection.collection("users").find().toArray()
-      return callback(null,users)
+      const result = await connection.collection("users").find().toArray()
+      return callback(null,result)
     }catch(err){
       return callback(err,null)
+    }
+  },
+  getUser: async (id, callback) => {
+    try {
+      const connection = await db.connection()
+      const result = await connection.collection("users").findOne({_id : new mongo.ObjectId(id)})
+      return callback(null, result)
+    }catch(err){
+      return callback(err, null)
     }
   },
   insertUser: async (user,callback) => {
@@ -34,10 +41,8 @@ const userModel = {
   updateUser: async (id, newData, callback) => {
     try {
       const connection = await db.connection()
-      connection.collection("users").updateOne({_id: new mongo.ObjectId(id)}, {$set: newData} , (err, result) => {
-        if(err) throw new Error(err)
-        return callback(null, result)
-      })
+      const result = await connection.collection("users").updateOne({_id: new mongo.ObjectId(id)}, {$set: newData})
+      return callback(null, result)
     }catch(err){
       return callback(err, null)
     }
