@@ -28,6 +28,15 @@ const userController = {
       })
     })
   },
+  updateUser: (req,res) => {
+    user.updateUser(req.params.id, req.body, (err,result) => {
+      if(err) return
+      return res.json({
+        success: 1,
+        data: result
+      })
+    } )
+  }
 }
 
 module.exports = userController
