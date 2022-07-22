@@ -1,6 +1,15 @@
 const user = require("../models/user.model")
 
 const userController = {
+  deleteUser: (req,res) => {
+    user.deleteUser( req.params.id, (err,result) => {
+        if(err) return
+        return res.json({
+          success: 1,
+          data: result
+        })
+    })
+  },
   getUsers: (req,res) => {
     user.getUsers( (err,result) => {
       if(err) return
@@ -18,7 +27,7 @@ const userController = {
         data: result
       })
     })
-  }
+  },
 }
 
 module.exports = userController

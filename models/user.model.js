@@ -1,6 +1,19 @@
+mongo = require('mongodb')
 const db = require("../db")
 
+
 const userModel = {
+  deleteUser: async (id, callback) => {
+    try{
+      const connection = await db.connection()
+      connection.collection("users").deleteOne({_id : new mongo.ObjectId(id)}, (err, result) => {
+        if(err) throw new Error(err)
+        return callback(null, result)
+      })
+    }catch(err){
+      return callback(err, null)
+    }
+  },
   getUsers: async (callback) => {
     try{
       const connection = await db.connection()
