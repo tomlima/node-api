@@ -29,7 +29,7 @@ const usersController = {
 }
 
 const handleOutput = (res,err,result) => {
-  if(err) return res.json({
+  if(err) return res.status(500).json({
     success:0,
     err: err
   })
