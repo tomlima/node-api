@@ -1,7 +1,7 @@
 mongo = require('mongodb')
 const db = require("../db")
 
-const userModel = {
+const usersModel = {
   deleteUser: async (id, callback) => {
     try{
       const connection = await db.connection()
@@ -49,4 +49,4 @@ const userModel = {
   }
 }
 
-module.exports = userModel
+module.exports = usersModel

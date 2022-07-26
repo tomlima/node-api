@@ -1,8 +1,8 @@
-const user = require("../models/user.model")
+const users = require("../models/users.model")
 
-const userController = {
+const usersController = {
   deleteUser: (req,res) => {
-    user.deleteUser( req.params.id, (err,result) => {
+    users.deleteUser( req.params.id, (err,result) => {
         if(err) return
         return res.json({
           success: 1,
@@ -11,7 +11,7 @@ const userController = {
     })
   },
   getUsers: (req,res) => {
-    user.getUsers( (err,result) => {
+    users.getUsers( (err,result) => {
       if(err) return
       return res.json({
         success: 1,
@@ -20,7 +20,7 @@ const userController = {
     })
   },
   getUser: (req,res) => {
-    user.getUser(req.params.id, (err, result) => {
+    users.getUser(req.params.id, (err, result) => {
       if(err) return
       return res.json({
         success: 1,
@@ -29,7 +29,7 @@ const userController = {
     })
   },
   insertUser: (req, res) => {
-    user.insertUser( req.body, (err,result) => {
+    users.insertUser( req.body, (err,result) => {
       if(err) return
       return res.json({
         success: 1,
@@ -38,7 +38,7 @@ const userController = {
     })
   },
   updateUser: (req,res) => {
-    user.updateUser(req.params.id, req.body, (err,result) => {
+    users.updateUser(req.params.id, req.body, (err,result) => {
       if(err) return
       return res.json({
         success: 1,
@@ -48,4 +48,4 @@ const userController = {
   }
 }
 
-module.exports = userController
+module.exports = usersController
