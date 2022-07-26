@@ -8,6 +8,7 @@ const usersModel = {
       const result = await connection.collection("users").deleteOne({_id : new mongo.ObjectId(id)})
       return callback(null, result)
     }catch(err){
+      console.log(err);
       return callback(err, null)
     }
   },
