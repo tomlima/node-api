@@ -1,7 +1,7 @@
 
 # Simple Node API 🐼​
 
-A simple REST API built with express and mongodb.
+A simple REST API built with nodejs/express and mongodb.
 
 
 
