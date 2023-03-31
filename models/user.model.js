@@ -1,5 +1,5 @@
 mongo = require('mongodb')
-const db = require("../db")
+const db = require("../services/database")
 
 const usersModel = {
   deleteUser: async (id, callback) => {
