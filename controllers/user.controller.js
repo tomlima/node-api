@@ -1,9 +1,8 @@
 const user = require('../models/user.model')
-const crypt = require("bcrypt")
-
+const crypt = require('bcrypt')
 
 module.exports = {
-  createUser : async(req, res) => {
+  createUser: async (req, res) => {
     try {
       req.body.password = hashSync(body.password, genSaltSync(10))
       const result = user.createUser(req.body)
@@ -18,8 +17,8 @@ module.exports = {
       })
     }
   },
-  
-  getUsers : async (req, res) => {
+
+  getUsers: async (req, res) => {
     try {
       const result = await user.getUsers()
       return res.json({
@@ -52,7 +51,7 @@ module.exports = {
       })
     }
   },
-  deleteUser: async(req, res) => {
+  deleteUser: async (req, res) => {
     try {
       const result = await user.deleteUser(req.params.id)
       return res.json({
@@ -67,8 +66,3 @@ module.exports = {
     }
   }
 }
-
-
-
-
-
