@@ -1,4 +1,4 @@
-import { connection } from '../services/database'
+import { connection } from '../services/database.js'
 
 /*----------------------------
 Create a new user

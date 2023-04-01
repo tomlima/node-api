@@ -1,4 +1,4 @@
-import * as user from '../models/user.model'
+import * as user from '../models/user.model.js'
 import { hashSync, genSaltSync } from 'bcrypt'
 
 /*----------------------------
