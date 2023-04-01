@@ -2,7 +2,7 @@ const user = require('../models/user.model')
 const crypt = require('bcrypt')
 
 module.exports = {
-  createUser: async (req, res) => {
+  create: async (req, res) => {
     try {
       req.body.password = crypt.hashSync(
         req.body.password,
@@ -22,7 +22,7 @@ module.exports = {
     }
   },
 
-  getUsers: async (req, res) => {
+  getAll: async (req, res) => {
     try {
       const result = await user.getUsers()
       return res.json({
@@ -37,7 +37,7 @@ module.exports = {
     }
   },
 
-  updateUser: async (req, res) => {
+  update: async (req, res) => {
     try {
       const user = await user.getUserById(req.params.id)
       if (req.body.password !== '') {
@@ -55,7 +55,7 @@ module.exports = {
       })
     }
   },
-  deleteUser: async (req, res) => {
+  delete: async (req, res) => {
     try {
       const result = await user.deleteUser(req.params.id)
       return res.json({

@@ -1,7 +1,7 @@
 const connection = require('../services/database')
 
 module.exports = {
-  getUsers: data => {
+  getAll: () => {
     return new Promise((resolve, reject) => {
       connection.query(`select Id,Name,Email from User`, (err, results) => {
         if (err) {
@@ -12,7 +12,7 @@ module.exports = {
     })
   },
 
-  createUser: data => {
+  create: data => {
     return new Promise((resolve, reject) => {
       connection.query(
         `insert into User(Name,Email,Password)values(?,?,?)`,
@@ -27,7 +27,7 @@ module.exports = {
     })
   },
 
-  getUserByEmail: email => {
+  getByEmail: email => {
     return new Promise((resolve, reject) => {
       connection.query(
         `SELECT * from User WHERE Email = ?`,
@@ -42,7 +42,7 @@ module.exports = {
     })
   },
 
-  getUserById: id => {
+  getById: id => {
     return new Promise((resolve, reject) => {
       connection.query(
         `SELECT * from User WHERE Id = ?`,
@@ -57,7 +57,7 @@ module.exports = {
     })
   },
 
-  updateUser: (userId, data) => {
+  update: (userId, data) => {
     return new Promise((resolve, reject) => {
       connection.query(
         `UPDATE User set Name=?, Email=?, Password=? where Id = ?`,
@@ -72,7 +72,7 @@ module.exports = {
     })
   },
 
-  deleteUser: userId => {
+  delete: userId => {
     return new Promise((resolve, reject) => {
       connection.query(
         `UPDATE User set Status=? WHERE Id = ?`,
