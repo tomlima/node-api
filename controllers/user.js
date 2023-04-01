@@ -39,7 +39,7 @@ module.exports = {
 
   update: async (req, res) => {
     try {
-      const user = await user.getUserById(req.params.id)
+      const user = await user.getById(req.params.id)
       if (req.body.password !== '') {
         req.body.password = hashSync(req.body.password, genSaltSync(10))
       }
