@@ -1,9 +1,26 @@
-import { connection } from '../services/database.js'
+const connection = require("../services/database")
 
-/*----------------------------
-Create a new user
-----------------------------*/
-export function create(data) {
+module.exports = {
+  /*----------------------------
+  Get all users
+  ----------------------------*/
+  getUsers : (data) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * from User`,
+        (err, results) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(results)
+        }
+      )
+    })
+  },
+  /*----------------------------
+  Create a new user
+  ----------------------------*/
+  create: (data) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `insert into User(Name,Email,Password)values(?,?,?)`,
@@ -15,31 +32,29 @@ export function create(data) {
         resolve(results)
       }
     )
-  })
-}
-
-/*----------------------------
-Get user by email
-----------------------------*/
-export function getUserByEmail(email) {
-  return new Promise((resolve, reject) => {
-    connection.query(
-      `SELECT * from User WHERE Email = ?`,
-      [email],  
-      (err, results) => {
-        if (err) {
-          reject(err)
+    })
+  },
+  /*----------------------------
+  Get user by email
+  ----------------------------*/
+  getUserByEmail:(email) => {
+    return new Promise((resolve, reject) => {
+      connection.query(
+        `SELECT * from User WHERE Email = ?`,
+        [email],  
+        (err, results) => {
+          if (err) {
+            reject(err)
+          }
+          resolve(results[0])
         }
-        resolve(results[0])
-      }
-    )
-  })
-}
-
-/*----------------------------
+      )
+    })
+  },
+  /*----------------------------
 Get user by id
 ----------------------------*/
-export function getUserById(id) {
+getUserById: (id) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `SELECT * from User WHERE Id = ?`,
@@ -52,12 +67,11 @@ export function getUserById(id) {
       }
     )
   })
-}
-
+},
 /*----------------------------
 Update user
 ----------------------------*/
-export function updateUser(userId, data) {
+updateUser: (userId, data) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `UPDATE User set Name=?, Email=?, Password=? where Id = ?`,
@@ -70,12 +84,12 @@ export function updateUser(userId, data) {
       }
     )
   })
-}
+},
 
 /*----------------------------
 Delete user
 ----------------------------*/
-export function deleteUser(userId) {
+deleteUser: (userId) => {
   return new Promise((resolve, reject) => {
     connection.query(
       `UPDATE User set Status=? WHERE Id = ?`,
@@ -89,3 +103,8 @@ export function deleteUser(userId) {
     )
   })
 }
+}
+
+
+
+

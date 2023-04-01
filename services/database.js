@@ -1,6 +1,7 @@
-import mysql from 'mysql'
+const mysql = require('mysql')
+require('dotenv/config') 
 
-export const connection = mysql.createPool({
+module.exports = mysql.createPool({
   host: process.env.MYSQL_HOST,
   port: process.env.MYSQL_PORT,
   user: process.env.MYSQL_USER,
