@@ -3,7 +3,7 @@ const connection = require('../services/database')
 module.exports = {
   getUsers: data => {
     return new Promise((resolve, reject) => {
-      connection.query(`SELECT * from User`, (err, results) => {
+      connection.query(`select Id,Name,Email from User`, (err, results) => {
         if (err) {
           reject(err)
         }
