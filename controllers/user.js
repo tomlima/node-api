@@ -8,13 +8,12 @@ module.exports = {
         req.body.password,
         crypt.genSaltSync(10)
       )
-      const result = await user.createUser(req.body)
+      const result = await user.create(req.body)
       return res.status(200).json({
         success: 1,
         data: result
       })
     } catch (err) {
-      console.log(err)
       return res.status(500).json({
         success: 0,
         message: err
@@ -24,12 +23,13 @@ module.exports = {
 
   getAll: async (req, res) => {
     try {
-      const result = await user.getUsers()
+      const result = await user.getAll()
       return res.json({
         success: 1,
         data: result
       })
     } catch (err) {
+      console.log(err)
       return res.status(500).json({
         success: 0,
         message: err
@@ -43,7 +43,7 @@ module.exports = {
       if (req.body.password !== '') {
         req.body.password = hashSync(req.body.password, genSaltSync(10))
       }
-      const result = await user.updateUser(req.params.id, req.body)
+      const result = await user.update(req.params.id, req.body)
       return res.json({
         success: 1,
         data: result
@@ -57,7 +57,7 @@ module.exports = {
   },
   delete: async (req, res) => {
     try {
-      const result = await user.deleteUser(req.params.id)
+      const result = await user.delete(req.params.id)
       return res.json({
         success: 1,
         data: result
