@@ -12,7 +12,7 @@ module.exports = {
     })
   },
 
-  create: data => {
+  createUser: data => {
     return new Promise((resolve, reject) => {
       connection.query(
         `insert into User(Name,Email,Password)values(?,?,?)`,

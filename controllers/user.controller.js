@@ -4,13 +4,17 @@ const crypt = require('bcrypt')
 module.exports = {
   createUser: async (req, res) => {
     try {
-      req.body.password = hashSync(body.password, genSaltSync(10))
-      const result = user.createUser(req.body)
+      req.body.password = crypt.hashSync(
+        req.body.password,
+        crypt.genSaltSync(10)
+      )
+      const result = await user.createUser(req.body)
       return res.status(200).json({
         success: 1,
         data: result
       })
     } catch (err) {
+      console.log(err)
       return res.status(500).json({
         success: 0,
         message: err
